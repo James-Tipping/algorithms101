@@ -1,4 +1,4 @@
-import java.util.Optional;
+package datastructures;
 
 public class LinkedList {
 
@@ -13,7 +13,7 @@ public class LinkedList {
 
   private Node head;
 
-  public void addHead(int data) {
+  public void addFront(int data) {
     Node newNode = new Node(data);
 
     // if no head, make this new node the head
@@ -38,16 +38,21 @@ public class LinkedList {
       throw new IllegalStateException("Head is null - list is empty!");
     }
 
-    Node nextNode = head.next;
-    while (nextNode != null) {
-      nextNode = nextNode.next;
+    Node currentNode = head;
+    while (currentNode.next != null) {
+      System.out.println("current node data: " + currentNode.data);
+      System.out.println("next node data: " + currentNode.next.data);
+      currentNode = currentNode.next;
     }
+    System.out.println("Going to return value");
 
-    return nextNode;
+    return currentNode;
   }
 
   public int getLast() {
-    return getLastNode().data;
+    Node lastNode = getLastNode();
+    System.out.println("Lastnode Value: " + lastNode.data);
+    return lastNode.data;
   }
 
   public void addBack(int data) {
@@ -96,7 +101,13 @@ public class LinkedList {
     while (currentNode.next != null) {
       if (currentNode.next.data == value) {
         currentNode.next = currentNode.next.next;
+        // originally missed this, should be added to prevent unncecessary computation
+        // LLM pointed me to this function
+        return;
       }
+      // originally missed this, not adding results in infinite loop
+      // LLM pointed me to this function
+      currentNode = currentNode.next;
     }
 
     // My original implementation (with error)
