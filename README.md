@@ -1,3 +1,3 @@
 # Algorithms 101
   
-A collection of commonly asked about data structures and algorithms for technical interviews
+From following along with the Udemy course [Data Structures and Algorithms Bootcamp](https://www.udemy.com/course/data-structures-and-algorithms-bootcamp/)
