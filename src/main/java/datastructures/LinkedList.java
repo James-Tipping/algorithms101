@@ -1,3 +1,5 @@
+import java.util.Optional;
+
 public class LinkedList {
 
   private static class Node {
@@ -7,6 +9,110 @@ public class LinkedList {
     public Node(int data) {
       this.data = data;
     }
+  }
+
+  private Node head;
+
+  public void addHead(int data) {
+    Node newNode = new Node(data);
+
+    // if no head, make this new node the head
+    if (head == null) {
+      head = newNode;
+      return;
+    }
+
+    // otherwise, make the new node's next equal to the current head
+    newNode.next = head;
+
+    // As before, make new head the newNode
+    head = newNode;
+  }
+
+  public int getFirst() {
+    return head.data;
+  }
+
+  private Node getLastNode() {
+    if (head == null) {
+      throw new IllegalStateException("Head is null - list is empty!");
+    }
+
+    Node nextNode = head.next;
+    while (nextNode != null) {
+      nextNode = nextNode.next;
+    }
+
+    return nextNode;
+  }
+
+  public int getLast() {
+    return getLastNode().data;
+  }
+
+  public void addBack(int data) {
+
+    Node newLastNode = new Node(data);
+
+    if (head == null) {
+      head = newLastNode;
+    } else {
+      Node currentLastNode = getLastNode();
+
+      currentLastNode.next = newLastNode;
+    }
+  }
+
+  public int size() {
+    if (head == null) {
+      return 0;
+    }
+
+    Node currentNode = head;
+    int sizeCounter = 1;
+
+    while (currentNode.next != null) {
+      currentNode = currentNode.next;
+      sizeCounter++;
+    }
+
+    return sizeCounter;
+  }
+
+  public void clear() {
+    // GC will remove all nodes as references broken when head removed
+    head = null;
+  }
+
+  public void deleteValue(int value) {
+
+    if (head.data == value) {
+      head = head.next;
+      return;
+    }
+
+    Node currentNode = head;
+
+    while (currentNode.next != null) {
+      if (currentNode.next.data == value) {
+        currentNode.next = currentNode.next.next;
+      }
+    }
+
+    // My original implementation (with error)
+    // Node previousNode;
+    // while (currentNode != null) {
+    // if (currentNode.data == value) {
+    // if (previousNode == null) {
+    // // GC will remove current head as reference to it removed
+    // head = currentNode.next;
+    // } else {
+    // // GC will remove currentNode.
+    // // Previous node next contains reference to currentNode's next value
+    // previousNode.next = currentNode.next;
+    // }
+    // }
+    // }
   }
 
 }
