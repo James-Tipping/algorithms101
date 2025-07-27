@@ -67,32 +67,4 @@ public class BinarySearchTree {
     root = delete(root, id);
   }
 
-  private Node delete(Node node, int id) {
-
-    if (node == null) {
-      return null;
-    } else if (id < node.id) {
-      node.left = delete(node.left, id);
-    } else if (id > node.id) {
-      node.right = delete(node.right, id);
-    } else if (id == node.id) {
-
-      if (node.left == null && node.right == null) {
-        node = null;
-      } else if (node.left != null ^ node.right != null) {
-        node = node.left == null ? node.right : node.left;
-      } else {
-        Node minNodeSuccessor = node.findMin();
-        node.id = minNodeSuccessor.id;
-        node.id = minNodeSuccessor.id;
-
-        // Cannot just set to null as we only have reference to object
-        // Must call delete function on copied node
-        node.right = delete(node.right, id);
-      }
-
-    }
-    return node;
-  }
-
 }
