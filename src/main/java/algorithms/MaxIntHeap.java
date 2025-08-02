@@ -1,3 +1,5 @@
+// This has errors - either in extractMax or heapifyDown
+
 package algorithms;
 
 public class MaxIntHeap {
