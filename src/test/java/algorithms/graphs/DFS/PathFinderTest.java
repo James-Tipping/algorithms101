@@ -19,7 +19,7 @@ public class PathFinderTest {
         g.addEdge(0, 3); // this edge missed! naive :)
 
 
-        System.out.println("Depth First Search HasPath:");
+        // System.out.println("Depth First Search HasPath:");
 
         Assert.assertEquals("[0, 1, 5, 2, 7]", g.findPath(0,7));
         Assert.assertEquals("[0, 1, 4, 6]", g.findPath(0,6));

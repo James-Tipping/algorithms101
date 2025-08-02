@@ -38,8 +38,8 @@ class PathFinder
             int current = stack.pop();
             visited[current] = true;
             tracker.add(current);
-            System.out.print(current + " ");
-            System.out.println("Adding = " + tracker);
+            // System.out.print(current + " ");
+            // System.out.println("Adding = " + tracker);
 
             // Check for path
             if (hasPath(tracker, startingFrom, to) && path == null) {
@@ -74,7 +74,7 @@ class PathFinder
 
         if (allNeighborsVisited(j, visited)) {
             tracker.pop();
-            System.out.println("Popping = " + current);
+            // System.out.println("Popping = " + current);
             popTillYouDrop(tracker, visited);
         }
     }
